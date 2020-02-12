@@ -1,4 +1,4 @@
-package com.walnet.service.sample;
+package com.wallnet.service.sample;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
