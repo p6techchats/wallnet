@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan("com.walnet.service")
+@ComponentScan("com.wallnet.service")
 public class SampleServiceApplication {
 
 	public static void main(String[] args) {
