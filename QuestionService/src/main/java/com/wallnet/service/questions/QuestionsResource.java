@@ -20,12 +20,12 @@ public class QuestionsResource {
 	@Autowired
 	private QuestionService service;
 
-	@GetMapping("/load")
+	@GetMapping
 	public List<Question> loadAllQuestions() {
 		return service.loadAllQuestions();
 	}
 
-	@GetMapping("/load/{quesId}")
+	@GetMapping("/{quesId}")
 	public Question loadQuestion(@PathVariable("quesId") String quesId) {
 		return service.loadQuestion(quesId);
 	}
@@ -42,7 +42,7 @@ public class QuestionsResource {
 		return service.updateQuestion(questionId, question);
 	}
 	
-	@PutMapping(value = "/delete/{quesId}")
+	@PutMapping(value = "/{quesId}/delete")
 	public String deleteQuestion(@PathVariable("quesId") String questionId)  {
 		return service.deleteQuestion(questionId);
 	}
