@@ -1,19 +1,19 @@
-package com.wallnet.service.questions.model;
+package com.wallnet.service.appcommon;
 
 import java.util.List;
 
 public class Question {
 
-	private String questionId;
+	private int questionId;
 	private String questionLine1;
 	private String questionLine2;
 	private List<String> options;
 
-	public String getQuestionId() {
+	public int getQuestionId() {
 		return questionId;
 	}
 
-	public void setQuestionId(String questionId) {
+	public void setQuestionId(int questionId) {
 		this.questionId = questionId;
 	}
 
@@ -43,6 +43,7 @@ public class Question {
 
 	@Override
 	public String toString() {
-		return "{questionId="+this.questionId + ", questionLine1=" + this.questionLine1 + ", questionLine2=" + this.questionLine2 + ", options=" + this.options +"}";
+		return "Question:[questionId" + this.questionId + ", questionLine1" + this.questionLine1 + ", questionLine2"
+				+ this.questionLine2 + ", options" + this.options + "]";
 	}
 }

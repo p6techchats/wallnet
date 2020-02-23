@@ -1,31 +1,22 @@
-package com.wallnet.service.answer.model;
+package com.wallnet.service.appcommon;
 
 public class Answer {
 
-	private String answerId;
-	private String questionId;
+	private int answerId;
 	private String answerLine1;
 	private String answerLine2;
 	private String option;
 
-	public String getAnswerId() {
+	public int getAnswerId() {
 		return answerId;
 	}
 
-	public void setAnswerId(String answerId) {
+	public void setAnswerId(int answerId) {
 		this.answerId = answerId;
 	}
 
 	public String getAnswerLine1() {
 		return answerLine1;
-	}
-
-	public String getQuestionId() {
-		return questionId;
-	}
-
-	public void setQuestionId(String questionId) {
-		this.questionId = questionId;
 	}
 
 	public void setAnswerLine1(String answerLine1) {
@@ -46,5 +37,11 @@ public class Answer {
 
 	public void setOption(String option) {
 		this.option = option;
+	}
+
+	@Override
+	public String toString() {
+		return "Answer:[answerId=" + this.answerId + ", answerLine1=" + this.answerLine1 + ", answerLine2="
+				+ this.answerLine2 + ", option=" + this.option + "]";
 	}
 }

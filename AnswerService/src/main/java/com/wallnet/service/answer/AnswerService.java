@@ -2,17 +2,17 @@ package com.wallnet.service.answer;
 
 import java.util.List;
 
-import com.wallnet.service.answer.model.Answer;
+import com.wallnet.service.appcommon.Answer;
 
 public interface AnswerService {
 
 	public List<Answer> loadAllAnswers();
 
-	public Answer loadAnswer(String answerId);
+	public Answer loadAnswer(int answerId);
 
-	public String addAnswer(Answer answer);
+	public int addAnswer(Answer answer);
 
-	public String updateAnswer(String answerId, Answer answer);
+	public String updateAnswer(int answerId, Answer answer);
 
-	public String deleteAnswer(String answerId);
+	public String deleteAnswer(int answerId);
 }

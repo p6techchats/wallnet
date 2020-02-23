@@ -2,18 +2,18 @@ package com.wallnet.service.questions;
 
 import java.util.List;
 
-import com.wallnet.service.questions.model.Question;
+import com.wallnet.service.appcommon.Question;
 
 public interface QuestionService {
 
 	public List<Question> loadAllQuestions();
 
-	public Question loadQuestion(String quesId);
+	public String updateQuestion(int questionId, Question question);
 
-	public String updateQuestion(String questionId, Question question);
+	public String deleteQuestion(int questionId);
 
-	public String deleteQuestion(String questionId);
+	public int addQuestion(Question question);
 
-	public String addQuestion(Question question);
+	public Question loadQuestion(int quesId);
 
 }

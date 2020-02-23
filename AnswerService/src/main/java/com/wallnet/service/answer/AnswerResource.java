@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wallnet.service.answer.model.Answer;
+import com.wallnet.service.appcommon.Answer;
 
 @RestController
 @RequestMapping("/answers")
@@ -26,22 +26,22 @@ public class AnswerResource {
 	}
 
 	@GetMapping(value = "/{ansId}")
-	public Answer loadAnswer(@PathVariable("ansId") String answerId) {
+	public Answer loadAnswer(@PathVariable("ansId") int answerId) {
 		return answerService.loadAnswer(answerId);
 	}
 
 	@PostMapping(value = "/add", consumes = "application/json")
-	public String addAnswer(@RequestBody Answer answer) {
+	public int addAnswer(@RequestBody Answer answer) {
 		return answerService.addAnswer(answer);
 	}
 
 	@PutMapping(value = "/{ansId}/edit", consumes = "application/json")
-	public String editAnswer(@PathVariable("ansId") String answerId, @RequestBody Answer answer) {
+	public String editAnswer(@PathVariable("ansId") int answerId, @RequestBody Answer answer) {
 		return answerService.updateAnswer(answerId, answer);
 	}
 
 	@PutMapping(value = "/{ansId}/delete")
-	public String deleteAnswer(@PathVariable("ansId") String answerId) {
+	public String deleteAnswer(@PathVariable("ansId") int answerId) {
 		return answerService.deleteAnswer(answerId);
 	}
 }

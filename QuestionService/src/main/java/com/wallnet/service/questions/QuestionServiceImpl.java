@@ -7,22 +7,21 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
-import com.wallnet.service.questions.model.Question;
+import com.wallnet.service.appcommon.Question;
+import com.wallnet.service.mock.MockQAData;
 
 @Service("questionService")
 public class QuestionServiceImpl implements QuestionService {
 
-	private static final List<Question> QUESTIONS = loadStaticQuestions();
-
 	@Override
 	public List<Question> loadAllQuestions() {
-		return QUESTIONS;
+		return MockQAData.QUESTIONS;
 	}
 
 	@Override
-	public Question loadQuestion(String quesId) {
-		for (Question question : QUESTIONS) {
-			if (question.getQuestionId().equals(quesId)) {
+	public Question loadQuestion(int quesId) {
+		for (Question question : MockQAData.QUESTIONS) {
+			if (question.getQuestionId() == quesId) {
 				return deepCopy(question);
 			}
 		}
@@ -30,20 +29,20 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public String addQuestion(Question question) {
+	public int addQuestion(Question question) {
 		if (StringUtils.isEmpty(question.getQuestionLine1()) || StringUtils.isEmpty(question.getQuestionLine2())) {
-			return null;
+			return -1;
 		}
-		Question lastQuestion = QUESTIONS.get(QUESTIONS.size() - 1);
-		question.setQuestionId(String.valueOf(Integer.parseInt(lastQuestion.getQuestionId())+1));
-		QUESTIONS.add(question);
+		Question lastQuestion = MockQAData.QUESTIONS.get(MockQAData.QUESTIONS.size() - 1);
+		question.setQuestionId(lastQuestion.getQuestionId() + 1);
+		MockQAData.QUESTIONS.add(question);
 		return question.getQuestionId();
 	}
 
 	@Override
-	public String updateQuestion(String questionId, Question questionReq) {
-		for (Question question : QUESTIONS) {
-			if (question.getQuestionId().equals(questionId)) {
+	public String updateQuestion(int questionId, Question questionReq) {
+		for (Question question : MockQAData.QUESTIONS) {
+			if (question.getQuestionId() == questionId) {
 				question.setQuestionLine1(questionReq.getQuestionLine1());
 				question.setQuestionLine2(questionReq.getQuestionLine2());
 				question.setOptions(questionReq.getOptions());
@@ -54,44 +53,17 @@ public class QuestionServiceImpl implements QuestionService {
 	}
 
 	@Override
-	public String deleteQuestion(String questionId) {
-		Iterator<Question> queIte = QUESTIONS.iterator();
+	public String deleteQuestion(int questionId) {
+		Iterator<Question> queIte = MockQAData.QUESTIONS.iterator();
 		while (queIte.hasNext()) {
 			Question question = (Question) queIte.next();
-			if (question.getQuestionId().equals(questionId)) {
+			if (question.getQuestionId() == questionId) {
+				//delete answer via answer service
 				queIte.remove();
 				return "Deleted successfully";
 			}
 		}
 		return "Delete operation failed";
-	}
-
-	private static List<Question> loadStaticQuestions() {
-		List<Question> list = new ArrayList<>();
-		Question question1 = new Question();
-		question1.setQuestionId(String.valueOf(list.size() + 1));
-		question1.setQuestionLine1("questionLine1 - 1");
-		question1.setQuestionLine2("questionLine2 - 1");
-		List<String> options1 = new ArrayList<>();
-		options1.add("A 1");
-		options1.add("B 1");
-		options1.add("C 1");
-		options1.add("D 1");
-		question1.setOptions(options1);
-		list.add(question1);
-
-		Question question2 = new Question();
-		question2.setQuestionId(String.valueOf(list.size() + 1));
-		question2.setQuestionLine1("questionLine1 - 2");
-		question2.setQuestionLine2("questionLine2 - 2");
-		List<String> options2 = new ArrayList<>();
-		options2.add("A 2");
-		options2.add("B 2");
-		options2.add("C 2");
-		options2.add("D 2");
-		question2.setOptions(options2);
-		list.add(question2);
-		return list;
 	}
 
 	private Question deepCopy(Question question) {
