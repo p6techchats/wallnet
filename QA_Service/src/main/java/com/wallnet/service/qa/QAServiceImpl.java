@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 
 import com.wallnet.service.appcommon.Answer;
@@ -22,6 +23,9 @@ public class QAServiceImpl implements QAService {
 	
 	@Autowired
 	private WebClient.Builder webClientBuilder;
+
+	@Autowired
+	private RestTemplate restTemplate;
 	
 	@Override
 	public QAResponse loadAllQuestionsAndAnswers() {
@@ -29,6 +33,8 @@ public class QAServiceImpl implements QAService {
 		qaResponse.setAnswers(answerClient.loadAllAnswers());
 		qaResponse.setQuestions(questionClient.loadAllQuestions());
 
+		List<Question> questions = restTemplate.getForObject("http://localhost:8082/questions", List.class);
+		System.out.println(questions);
 		List<Answer> answers = webClientBuilder.build().get().uri("http://localhost:8083/answers").retrieve().bodyToMono(List.class).block();
 		System.out.println(answers);
 		return qaResponse;

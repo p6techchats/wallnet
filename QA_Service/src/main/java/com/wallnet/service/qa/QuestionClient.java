@@ -11,21 +11,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import com.wallnet.service.appcommon.Question;
 
-@FeignClient(name = "question-service-client", url="http://localhost:8082")
+@FeignClient(name = "question-service-client", url="http://localhost:8082/questions")
 public interface QuestionClient {
 
-	@GetMapping("/questions")
+	@GetMapping
 	public List<Question> loadAllQuestions();
 
-	@GetMapping("/questions/{quesId}")
+	@GetMapping("/{quesId}")
 	public Question loadQuestion(@PathVariable("quesId") int quesId);
 
-	@PostMapping(value = "/questions/add", consumes = "application/json")
+	@PostMapping(value = "/add", consumes = "application/json")
 	public int addQuestion(@RequestBody Question question);
 
-	@PutMapping(value = "/questions/{quesId}/edit", consumes = {"application/json"})
+	@PutMapping(value = "/{quesId}/edit", consumes = {"application/json"})
 	public String editQuestion(@PathVariable("quesId") int questionId, @RequestBody Question question);
 	
-	@PutMapping(value = "/questions/{quesId}/delete")
+	@PutMapping(value = "/{quesId}/delete")
 	public String deleteQuestion(@PathVariable("quesId") int questionId);
 }
