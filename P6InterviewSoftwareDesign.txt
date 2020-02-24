@@ -1,0 +1,49 @@
+Users of the system:-
+--------------------
+1)Interview Candidate
+2)System Administrator
+For Simplicity , Let us assume only 1 person can create the exam & set the questions and options for it.
+
+Use Cases For System Admin:-
+-------------------------
+1)System Administrator logs-in to the application (can have default username/pwd)
+2)He creates an exam and adds questions and options to it.
+3)He can activate or deactivate exams
+4)He should be able to add/modify/delete users
+5)He should be able to see the results of the exam  (per exam and per user)
+
+
+Use Cases For Candidate:-
+-------------------------
+1)Should be able to login to application
+2)He should be able to see list of exams available for him to take up
+3)He can start the exam (take up the exam)
+4)He should be able to navigate through the questions and select the options
+5)He should be able to submit the exam
+
+
+TABLE SCHEMA DESIGN
+----------------------
+
+USERS
+  -id
+  -username
+  -password
+  -emailid
+  -mobileno
+  
+QUESTIONS
+  -questionida
+  -description
+  -type (multiple choice)
+  -answerid
+  
+ANSWERS
+  -id
+  -questionid
+  
+EXAM
+  -id
+  -name
+  -type (RANDOM/FIXED)
+  
