@@ -20,7 +20,7 @@ public class QuestionsResource {
 	@Autowired
 	private QuestionService service;
 	
-	@GetMapping
+	@GetMapping("/load")
 	public List<Question> loadAllQuestions() {
 		return service.loadAllQuestions();
 	}

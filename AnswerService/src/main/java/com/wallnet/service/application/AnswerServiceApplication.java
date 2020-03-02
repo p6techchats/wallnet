@@ -7,7 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EnableEurekaClient
-@ComponentScan(basePackages = { "com.wallnet.service.answer", "com.wallnet.service.appcommon","com.wallnet.service.mock" })
+@ComponentScan(basePackages = { "com.wallnet.service.answer"})
 public class AnswerServiceApplication {
 
 	public static void main(String[] args) {

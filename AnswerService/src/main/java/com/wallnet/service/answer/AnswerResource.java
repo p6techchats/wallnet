@@ -20,7 +20,7 @@ public class AnswerResource {
 	@Autowired
 	private AnswerService answerService;
 
-	@GetMapping
+	@GetMapping("/load")
 	public List<Answer> loadAllAnswers() {
 		return answerService.loadAllAnswers();
 	}
